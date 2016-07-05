@@ -27,5 +27,11 @@ describe TicTacToeApp do
         expect(last_response.body).to include "------X-" 
       end
     end
+
+    it 'marks the board with player one and then player two' do
+      get '/play', {"board" => "XO-------"} do
+        expect(last_response.body).to include "XO------" 
+      end
+    end
   end
 end

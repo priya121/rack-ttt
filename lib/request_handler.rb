@@ -3,12 +3,9 @@ require 'core/ttt/game'
 require 'web_human_player'
 
 class RequestHandler
-  def initialize(request)
+  def initialize(request, current_board)
     @request = request
-    empty_three = ["-", "-", "-",
-                   "-", "-", "-",
-                   "-", "-", "-"]
-    @board = Board.new(empty_three)
+    @board = current_board
     @player_x = WebHumanPlayer.new("X")
     @player_o = WebHumanPlayer.new("O")
   end
