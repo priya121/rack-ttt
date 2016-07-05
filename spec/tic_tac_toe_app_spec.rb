@@ -15,5 +15,11 @@ describe TicTacToeApp do
         expect(last_response).to be_ok
       end
     end
+
+    it 'takes an index and marks board' do
+      get '/play', {"index" => 0} do
+        expect(last_response.body).to eq "X--------" 
+      end
+    end
   end
 end
