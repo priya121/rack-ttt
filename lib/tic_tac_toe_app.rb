@@ -1,4 +1,5 @@
 require 'rack'
+require 'display'
 require 'request_handler'
 
 class TicTacToeApp
@@ -12,9 +13,12 @@ class TicTacToeApp
 
       map "/play" do
         run (Proc.new do |env|
-        marked_board = RequestHandler.new(Rack::Request.new(env)).index
-        board = marked_board.cells.join
-          [200, {}, [board]]
+          request = RequestHandler.new(Rack::Request.new(env))
+          display = Display.new
+          marked_board = request.game
+          board = marked_board.cells.join
+          show = display.generate_display(board)
+          [200, {}, [show]]
         end)
       end
 
