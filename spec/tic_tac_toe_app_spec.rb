@@ -24,13 +24,14 @@ describe TicTacToeApp do
 
     it 'takes an index and marks a board at a different position' do
       get '/play', {"player_move" => 7} do
-        expect(last_response.body).to include "------X-" 
+        expect(last_response.body).to include "X------O-" 
       end
     end
 
     it 'marks the board with player one and then player two' do
-      get '/play', {"board" => "XO-------"} do
-        expect(last_response.body).to include "XO-------" 
+      get '/play', {"board" => "X------O-"} do
+        expect(last_response.body).to include "X------O-" 
     end
+  end
   end
 end
