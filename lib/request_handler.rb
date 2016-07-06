@@ -13,10 +13,17 @@ class RequestHandler
     @player_o = WebHumanPlayer.new("O")
   end
 
-  def game
-    @game = Game.new(@board, @player_x, @player_o)
+  def mark_board(current_board)
+    marked_board = Board.new(current_board.split(""))
+    @game = Game.new(marked_board, @player_x, @player_o)
     index = @request["player_move"]
     @game.next_player.next_move = index.to_i
-    @game.mark_board
+    @game.mark_board.cells.join("")
   end
+
+  def board
+    new_board = @request["board"]
+    new_board.nil? ? "---------" : new_board
+  end
+
 end

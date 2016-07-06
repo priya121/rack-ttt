@@ -1,11 +1,12 @@
 <html>
   <h1> Tic Tac Toe </h1>
   <p> <%= "Enter an index to make a move" %> </p>
-  <p> <<%= board %> name="board"></p>
+  <p> <%= board %> </p>
   <form>
     Index: <br>
     <input type="text" name="player_move"> <br>
     <input type="submit" value="Submit">
+    <input type="hidden" name="board" value=<%= board %>>
   </form>
 </html>
 
