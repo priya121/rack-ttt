@@ -26,7 +26,6 @@ class Controller
   private
 
   def board
-    new_board = @request["board"]
     new_board.nil? ? "---------" : new_board
   end
 
