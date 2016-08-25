@@ -18,7 +18,7 @@ class TicTacToeApp
         run (Proc.new do |env|
           request = RequestHandler.new(Rack::Request.new(env))
           show = Display.new.home_page
-          if request.start == "start"
+          if request.start_game_text == "start"
             ['302', { 'Content-Type' => 'text/html', 'Location' => "/play" }, []]
           else 
             show = Display.new.home_page

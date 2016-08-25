@@ -23,7 +23,7 @@ describe TicTacToeApp do
     end
 
     it 'redirects from the start page when user submits start' do
-      post '/start', 'start' => 'start'
+      post '/start', 'start_game_text' => 'start'
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_request.url).to eq "http://example.org/play"

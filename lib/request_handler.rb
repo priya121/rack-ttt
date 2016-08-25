@@ -12,7 +12,7 @@ class RequestHandler
     current_board.nil? ? "---------" : current_board 
   end
 
-  def start
-    @request["start"]
+  def start_game_text
+    @request["start_game_text"]
   end
 end
