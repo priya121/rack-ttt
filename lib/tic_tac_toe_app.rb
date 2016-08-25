@@ -31,14 +31,9 @@ class TicTacToeApp
         run (Proc.new do |env|
           request = RequestHandler.new(Rack::Request.new(env))
           player_move = request.player_move
-          if player_move != 0
-            display_board = controller.mark_board(request.board, player_move)
-            show = Display.new.generate_display(display_board)
-            [200, {}, [show]]
-          else
-            show = Display.new.generate_display(request.board)
-            [200, {}, [show]]
-          end
+          display_board = controller.mark_board(request.board, player_move)
+          show = Display.new.generate_display(display_board)
+          [200, {}, [show]]
         end)
       end
 
