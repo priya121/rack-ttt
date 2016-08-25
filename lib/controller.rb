@@ -25,10 +25,6 @@ class Controller
 
   private
 
-  def board
-    new_board.nil? ? "---------" : new_board
-  end
-
   def empty?(board, index)
     board[index] == "-" 
   end
