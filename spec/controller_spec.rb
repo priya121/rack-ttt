@@ -13,8 +13,7 @@ describe Controller do
     controller = Controller.new
     controller.mark_board("---------", 1)
     controller.mark_board("X--------", 2)
-    controller.mark_board("XO-------", 9)
-    expect(controller.game.board.cells.join).to eq "XO------X" 
+    expect(controller.mark_board("XO-------", 9)).to eq "XO------X" 
   end
 
   it 'does not mark a taken position' do

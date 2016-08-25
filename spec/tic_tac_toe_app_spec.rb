@@ -38,19 +38,25 @@ describe TicTacToeApp do
   context '/play' do
     it 'starts with an empty board' do
       get '/play' do
-        expect(last_response.body).to include "---------" 
+        expect(last_response.body).to include "Click on a square to make a move" 
       end
     end
 
     it 'takes an index and marks board' do
       get '/play', {"player_move" => 1} do
-        expect(last_response.body).to include "X--------" 
+        expect(last_response.body).to include "X" 
       end
     end
 
     it 'takes an index and marks a board at a different position' do
       get '/play', {"player_move" => 7} do
-        expect(last_response.body).to include "------X--" 
+        expect(last_response.body).to include "X" 
+      end
+    end
+
+    it 'takes an index and marks a board at a different position' do
+      get '/play', {"player_move" => 7} do
+        expect(last_response.body).to include "X" 
       end
     end
   end

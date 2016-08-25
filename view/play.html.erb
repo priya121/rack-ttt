@@ -1,13 +1,17 @@
 <html>
   <h1> Tic Tac Toe </h1>
-  <p> <%= "Enter an position form 1 - 9 to make a move" %> </p>
-  <p> <%= board %> </p>
-  <form>
-    Index: <br>
-    <input type="text" name="player_move" required> <br>
-    <input type="submit" value="Submit">
-    <input type="hidden" name="board" value=<%= board %>>
-  </form>
+  <body>
+    <p> <%= "Click on a square to make a move" %> </p>
+    <% board.split("").each_with_index do |cell, index| %>
+      <% if board[index] == "-" %>
+        <form action="" method="post">
+          <button name=player_move value=<%= index + 1 %> type='submit'><%= cell %></button>
+        <% else %>
+          <button type='button'><%= cell %></button>
+        <% end %>
+      <% end %>
+        </form>
+  </body>
 </html>
 
 
