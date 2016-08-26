@@ -17,10 +17,16 @@ class Controller
     board = Board.new(current_board.split(""))
     set_player_move(index)
     if empty?(board.cells, @game.next_player.next_move) && move_not_made(index)
-      @game.mark_board.cells.join("")
+      @game.mark_board
     else
-      current_board
+      board
     end
+  end
+
+  def rows(board)
+    size = board.cells.size
+    row_length = Math.sqrt(size)
+    board.cells.each_slice(row_length).to_a
   end
 
   private

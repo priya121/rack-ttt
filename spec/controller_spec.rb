@@ -21,4 +21,15 @@ describe Controller do
     expect(controller.mark_board("X----O---", 6)).to eq "X----O---" 
     expect(controller.mark_board("---OXX---", 6)).to eq "---OXX---" 
   end
+
+  it 'determines the rows of a board' do
+    controller = Controller.new
+    board = Board.new(["-", "-", "-",
+                       "-", "-", "-",
+                       "O", "X", "X"])
+    expect(controller.rows(board)).to eq [["-", "-", "-"],
+                                          ["-", "-", "-"],
+                                          ["O", "X", "X"]]
+
+  end
 end

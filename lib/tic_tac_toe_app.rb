@@ -34,6 +34,7 @@ class TicTacToeApp
           request = RequestHandler.new(Rack::Request.new(env))
           player_move = request.player_move
           display_board = controller.mark_board(request.board, player_move)
+          controller.rows(display_board)
           show = Display.new.generate_display(display_board)
           [200, {}, [show]]
         end)
