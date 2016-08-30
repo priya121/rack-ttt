@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/priya121/core-ttt.git
-  revision: 04eac0be47197031dceb6d678f7f0f4fda028be5
+  revision: c68d33675d43e1f82f9798cb5cdad918602d38fb
   specs:
-    core-ttt (0.4.0)
+    core-ttt (0.5.0)
 
 GEM
   remote: https://rubygems.org/
@@ -13,7 +13,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  core-ttt (= 0.4.0)!
+  core-ttt (= 0.5.0)!
   rack
 
 BUNDLED WITH
