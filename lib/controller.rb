@@ -16,7 +16,7 @@ class Controller
   def mark_board(current_board, index)
     board = Board.new(current_board.split(""))
     set_player_move(index)
-    if empty?(board.cells, @game.next_player.next_move) && move_not_made(index)
+    if move_not_made(index)
       @game.mark_board
     else
       board
