@@ -32,9 +32,7 @@ class TicTacToeApp
       map "/play" do
         run (Proc.new do |env|
           request = RequestHandler.new(Rack::Request.new(env))
-          player_move = request.player_move
-          display_board = controller.mark_board(request.board, player_move)
-          controller.rows(display_board)
+          display_board = controller.mark_board(request.board, request.player_move)
           show = Display.new.generate_display(display_board)
           [200, {}, [show]]
         end)
