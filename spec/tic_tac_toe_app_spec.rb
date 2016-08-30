@@ -38,7 +38,7 @@ describe TicTacToeApp do
   context '/play' do
     it 'starts with an empty board' do
       get '/play' do
-        expect(last_response.body).to include "Click on a square to make a move" 
+        expect(last_response.body).to_not include "X" 
       end
     end
 
