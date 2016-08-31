@@ -4,43 +4,26 @@ require 'core/ttt/game'
 
 class Controller
 
-  attr_reader :game
-
-  def initialize
-    @player_x = WebHumanPlayer.new("X")
-    @player_o = WebHumanPlayer.new("O")
-    @board = Board.new(Array.new(9,"-"))
-    @game = Game.new(@board, @player_x, @player_o)
+  def create_game(board)
+    player_x = WebHumanPlayer.new("X")
+    player_o = WebHumanPlayer.new("O")
+    Game.new(board, player_x, player_o)
   end
 
-  def mark_board(current_board, index)
-    board = Board.new(current_board.split(""))
-    set_player_move(index)
-    if move_not_made(index)
-      @game.mark_board
+  def make_move(game, index)
+    if move_provided(index)
+      game.next_player.next_move = index - 1
+      game.mark_board
     else
-      board
+      game.board
     end
-  end
-
-  def rows(board)
-    size = board.cells.size
-    row_length = Math.sqrt(size)
-    board.cells.each_slice(row_length).to_a
   end
 
   private
 
-  def empty?(board, index)
-    board[index] == "-" 
-  end
-
-  def set_player_move(index)
-    @game.next_player.next_move = index - 1
-  end
-
-  def move_not_made(index)
+  def move_provided(index)
     index != 0
   end
+
 
 end

@@ -55,8 +55,9 @@ describe TicTacToeApp do
     end
 
     it 'takes an index and marks a board at a different position' do
-      get '/play', {"player_move" => 7} do
+      get '/play', {"player_move" => 3} do
         expect(last_response.body).to include "X" 
+        expect(last_response.body).to include "O" 
       end
     end
   end

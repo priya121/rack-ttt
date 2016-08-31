@@ -12,6 +12,7 @@
         <% if board.mark_at(index) == "-" %>
           <form action="" method="post">
             <div class="cell">
+              <input type="hidden" name=board value=<%= board.cells.join("") %> />
               <button class='button' name=player_move value=<%= index + 1 %> type='submit'><% %>
             </button>
             </div>
