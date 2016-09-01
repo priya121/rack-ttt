@@ -2,16 +2,16 @@ require 'rack/test'
 require 'controller'
 
 describe Controller do
-  EMPTY_BOARD = Board.new(["-", "-", "-",
-                           "-", "-", "-",
-                           "-", "-", "-"])
 
-  MARKED_BOARD =  Board.new(["-", "-", "X",
-                             "-", "O", "-",
-                             "-", "O", "-"])
 
   before (:each) do 
     @controller = Controller.new
+    MARKED_BOARD =  Board.new(["-", "-", "X",
+                             "-", "O", "-",
+                             "-", "O", "-"])
+    EMPTY_BOARD = Board.new(["-", "-", "-",
+                             "-", "-", "-",
+                             "-", "-", "-"])
   end
 
   it 'marks a position on an empty board' do

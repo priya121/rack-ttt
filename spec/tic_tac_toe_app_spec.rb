@@ -5,6 +5,7 @@ describe TicTacToeApp do
   include Rack::Test::Methods
   let (:application) {described_class.new}
 
+
   def app
     application.rack_up
   end
