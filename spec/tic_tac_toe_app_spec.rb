@@ -55,8 +55,19 @@ describe TicTacToeApp do
     end
 
     it 'takes an index and marks a board at a different position' do
-      get '/play', {"player_move" => 3} do
+      get '/play', {"player_move" => 3, "player_move" => 1} do
         expect(last_response.body).to include "X" 
+      end
+    end
+
+    it 'makes a move on a stored board' do 
+      marked_board = Board.new(["-", "X", "-",
+                                "O", "O", "-",
+                                "-", "X", "-"])
+      get '/play', {"player_move" => 3}, {'rack.session' => {"board" => marked_board}} do
+        expect(last_request.env['rack.session'][:board].cells).to eq ["-", "X", "X",
+                                                                      "O", "O", "-",
+                                                                      "-", "X", "-"]
       end
     end
 
@@ -67,15 +78,5 @@ describe TicTacToeApp do
       end
     end
 
-    it 'removes index of marked position' do 
-      marked_board = Board.new(["-", "X", "-",
-                                "O", "O", "-",
-                                "-", "X", "-"])
-      get '/play', {"player_move" => 3}, {'rack.session' => {"board" => marked_board}} do
-        expect(last_request.env['rack.session'][:board].cells).to eq ["-", "X", "X",
-                                                                      "O", "O", "-",
-                                                                      "-", "X", "-"]
-      end
-    end
   end
 end
