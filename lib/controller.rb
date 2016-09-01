@@ -25,5 +25,4 @@ class Controller
     index != 0
   end
 
-
 end
