@@ -11,8 +11,10 @@ class TicTacToeApp
 
   def rack_up
     controller = @controller
+    board = @board
 
     Rack::Builder.new do |env|
+      use Rack::Session::Cookie
 
       map "/start" do
         run (Proc.new do |env|
@@ -32,7 +34,15 @@ class TicTacToeApp
       map "/play" do
         run (Proc.new do |env|
           request = RequestHandler.new(Rack::Request.new(env))
-          display_board = controller.mark_board(request.board, request.player_move)
+          current_board = env['rack.session'][:board]
+          
+          if current_board.nil? || request.reset_game == "restart"
+            current_board = Board.new(Array.new(9, "-")) 
+          end
+
+          game = controller.create_game(current_board)
+          display_board = controller.make_move(game, request.player_move)
+          env['rack.session'][:board] = display_board
           show = Display.new.generate_display(display_board)
           [200, {}, [show]]
         end)

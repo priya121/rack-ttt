@@ -5,6 +5,7 @@ describe TicTacToeApp do
   include Rack::Test::Methods
   let (:application) {described_class.new}
 
+
   def app
     application.rack_up
   end
@@ -55,8 +56,26 @@ describe TicTacToeApp do
     end
 
     it 'takes an index and marks a board at a different position' do
-      get '/play', {"player_move" => 7} do
+      get '/play', {"player_move" => 3} do
         expect(last_response.body).to include "X" 
+      end
+    end
+
+    it 'makes a move on a stored board' do 
+      marked_board = Board.new(["-", "X", "-",
+                                "O", "O", "-",
+                                "-", "X", "-"])
+      get '/play', {"player_move" => 3}, {'rack.session' => {"board" => marked_board}} do
+        expect(last_request.env['rack.session'][:board].cells).to eq ["-", "X", "X",
+                                                                      "O", "O", "-",
+                                                                      "-", "X", "-"]
+      end
+    end
+
+    it 'resets a game when restart clicked' do 
+      get '/play', {"restart" => "restart"} do
+        expect(last_response.body).not_to include "X" 
+        expect(last_response.body).not_to include "O" 
       end
     end
   end

@@ -55,6 +55,13 @@ h1 {
 }
 
 .board-wrapper {
-  width: 45%;
+  width: 700px;
   margin: 0 auto;
 }
+
+.restart_button {
+  font-size: 1em;
+  font-weight: lighter;
+  margin: 0px 0px 0px 40px;
+}
+
